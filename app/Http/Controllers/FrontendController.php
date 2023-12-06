@@ -16,16 +16,19 @@ use App\Models\baner;
 use App\Models\home_banner;
 use App\Models\festivals;
 use App\Models\about;
+use App\Models\home_about;
 class FrontendController extends Controller
 {
     public function index(){
         $home_banner = home_banner::all();
         $gallery = gallery::all();
         $event = event::all();
+        $home_about = home_about::find($id = 1);
         return view('frontend.index',[
             'home_banner'=>$home_banner,
             'gallery'=>$gallery,
             'event'=>$event,
+            'home_about'=>$home_about
         ]);
     }
 

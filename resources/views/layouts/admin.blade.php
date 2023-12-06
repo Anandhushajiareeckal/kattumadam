@@ -308,6 +308,10 @@
 								
 								</ul>
 							</li>
+							<form method="POST" action="{{ route('logout') }}">
+								@csrf
+								<li><button type="submit" class="btn btn-danger" onclick="return confirm('Do you want to logout ?')"> Log out</button></li>
+							</form>
 							{{-- <li >
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

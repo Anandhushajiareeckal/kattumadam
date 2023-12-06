@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\Models\home_banner;
+use App\Models\home_about;
 class IndexController extends Controller
 {
     public function home(){
@@ -78,6 +79,37 @@ class IndexController extends Controller
     
             $admin_banner->delete();
         }
+    }
+
+    public function home_about(){
+        $home_about = home_about::find($id=1);
+        return view('admin.hom.hom_about',['home_about'=>$home_about]);
+    }
+
+    public function home_about_update(Request $request){
+        $home_about = home_about::find($id=1);
+        $home_about->heading = request("heading");
+        $home_about->description_1 = request("description_1");
+        $home_about->description_2 = request("description_2");
+
+        if ($request->file('image_1')) {
+            $image = $request->file('image_1');
+            $imageName = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+
+            // You can also store the image path in your database if needed
+             $home_about -> image_1 = '/images/'.$imageName;
+        }
+        if ($request->file('image_2')) {
+            $image = $request->file('image_2');
+            $imageName = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+
+            // You can also store the image path in your database if needed
+             $home_about -> image_2 = '/images/'.$imageName;
+        }
+        $home_about->save();
+        return redirect('/admin/home/about');
     }
 
     

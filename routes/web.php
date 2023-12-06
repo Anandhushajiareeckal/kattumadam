@@ -35,7 +35,7 @@ Route::post("/enquirey","App\Http\Controllers\ContactController@enquirey")->name
 
 
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get("/dashboard","App\Http\Controllers\IndexController@dashboard")->name('dashboard');
     Route::prefix('home')->group(function () {
         Route::get("/","App\Http\Controllers\IndexController@banner_add")->name('banner_add');
@@ -44,6 +44,9 @@ Route::prefix('admin')->group(function () {
         Route::get("/banner/{id}","App\Http\Controllers\IndexController@banner_edit")->name('banner_edit');
         Route::put("/banner/edit/{id}","App\Http\Controllers\IndexController@banner_update")->name('banner_update');
         Route::get("/banner/delete/{id}","App\Http\Controllers\IndexController@destroy")->name('banner_delete');
+        Route::get("/about","App\Http\Controllers\IndexController@home_about")->name('home_about');
+        Route::put("/about/update","App\Http\Controllers\IndexController@home_about_update")->name('home_about_update');
+
     });
 
     Route::prefix('event')->group(function () {
@@ -132,4 +135,27 @@ Route::prefix('admin')->group(function () {
         Route::get("/","App\Http\Controllers\AboutController@index")->name('tt_about');
         Route::put("/edit","App\Http\Controllers\AboutController@update")->name('about_edit');
     });
+
+    Route::prefix('social')->group(function () {
+        Route::get("/","App\Http\Controllers\SocialController@index");
+        Route::get("/add","App\Http\Controllers\SocialController@add")->name('social_add');
+        Route::get("/delete/{id}","App\Http\Controllers\SocialController@delete")->name('social_delete');
+        Route::post("/store","App\Http\Controllers\SocialController@store")->name('social_store');
+        Route::get("{id}/edit","App\Http\Controllers\SocialController@edit")->name('social_edit');
+        Route::put("/update/{id}","App\Http\Controllers\SocialController@update")->name('social_update');
+    });
 });
+
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';

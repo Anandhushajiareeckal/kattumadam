@@ -1727,8 +1727,8 @@ a.facilities-button i:hover{
 
 
 .footer-widget-contact {
-    background: #272727;
-    padding: 48px 42px 54px;
+    /* background: #272727; */
+    padding: 116px 42px 54px;
     position: relative;
     margin-top: -179px;
 }

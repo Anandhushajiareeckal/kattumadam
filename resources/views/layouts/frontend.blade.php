@@ -1,7 +1,13 @@
 @php
 namespace App\Models;
 use App\Models\logo;
+use App\Models\social;
+use App\Models\contact;
+use App\Models\gallery;
 $logo = logo::find($id=1);
+$social = social::all();
+$contact = contact::find($id=1);
+$gallery = gallery::all();
 @endphp
 <!DOCTYPE HTML>
 <html lang="en-US">
@@ -165,6 +171,8 @@ $logo = logo::find($id=1);
 				   </ul>
 				</li>   
 				<li><a href="/contact">Contact</a></li>
+				
+
 			</ul>
 		</nav>
 	</div>
@@ -348,18 +356,21 @@ $logo = logo::find($id=1);
 						</div>
 						<div class="footer-widget-contact-info">
 							<ul>
-								<li><i class="bi bi-telephone-fill"></i>+980 (1234) 567 220</li>
-								<li><i class="bi bi-envelope"></i>example@yahoo.com</li>
-								<li><i class="bi bi-geo-alt-fill"></i>102/B New Elephant Rd<br>Dhaka - 1212</li>
+								<li><i class="bi bi-telephone-fill"></i>{{$contact->number}}</li>
+								<li><i class="bi bi-envelope"></i>{{$contact->email}}</li>
+								<li><i class="bi bi-geo-alt-fill"></i>{{$contact->location}}</li>
 							</ul>
 						</div>
 					</div>
 					<div class="footer-widget-social-icon">
 						<ul>
-							<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-							<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-							<li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+							<ul>
+								@foreach ($social as $item)
+									@if ($item->status == 1)
+										<li><a href="{{$item->link}}"><i class="{{$item->icon}}"></i></a></li>
+									@endif
+								@endforeach
+							</ul>
 						</ul>
 					</div>
 				</div>
@@ -371,11 +382,11 @@ $logo = logo::find($id=1);
 					</div>
 					<div class="footer-widget-menu">
                         <ul>
-                         	<li><a href="about.html">About Hotel</a></li>
-                         	<li><a href="room.html">Rooms & Suites</a></li>
-                         	<li><a href="room-details.html">Reservations</a></li>
-                         	<li><a href="blog.html">News & Blogs</a></li>
-                         	<li><a href="contact.html">Contact</a></li>
+                         	<li><a href="/about">About </a></li>
+                         	<li><a href="/history">History</a></li>
+                         	<li><a href="/poojas">Poojas</a></li>
+                         	<li><a href="/offerings">Offerings</a></li>
+                         	<li><a href="/contact">Contact</a></li>
                         </ul>
 					</div>
 				</div>
@@ -386,12 +397,9 @@ $logo = logo::find($id=1);
 						<h4>Gallery</h4>
 					</div>
 					<div class="footer-widget-gallery">
-                        <a class="place venobox vbox-item" data-gall="lace-imgs" href="{{asset('frontend/assets/images/home2/gallery-1.jpg')}}"><img src="{{asset('frontend/assets/images/home2/gallery-1.jpg')}}" alt=""></a>                       
-                         <a class="place venobox vbox-item" data-gall="lace-imgs" href="{{asset('frontend/assets/images/home2/gallery-2.jpg')}}"><img src="{{asset('frontend/assets/images/home2/gallery-2.jpg')}}" alt=""></a>                      
-                        <a class="place venobox vbox-item" data-gall="lace-imgs" href="{{asset('frontend/assets/images/home2/gallery-3.jpg')}}"><img src="{{asset('frontend/assets/images/home2/gallery-3.jpg')}}" alt=""></a> 
-                        <a class="place venobox vbox-item" data-gall="lace-imgs" href="{{asset('frontend/assets/images/home2/gallery-4.jpg')}}"><img src="{{asset('frontend/assets/images/home2/gallery-4.jpg')}}" alt=""></a> 
-                        <a class="place venobox vbox-item" data-gall="lace-imgs" href="{{asset('frontend/assets/images/home2/gallery-5.jpg')}}"><img src="{{asset('frontend/assets/images/home2/gallery-5.jpg')}}" alt=""></a>
-                        <a class="place venobox vbox-item" data-gall="lace-imgs" href="{{asset('frontend/assets/images/home2/gallery-6.jpg')}}"><img src="{{asset('frontend/assets/images/home2/gallery-6.jpg')}}" alt=""></a>
+						@foreach ($gallery as $item)
+                        	<a class="place venobox vbox-item" data-gall="lace-imgs" href="{{$item->image}}"><img src="{{$item->image}}" alt="" style="height: 50px;"></a>                       
+						@endforeach
 					</div>
 				</div>
 			</div>			

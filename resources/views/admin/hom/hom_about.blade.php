@@ -6,12 +6,12 @@
             <div class="card mb-4">
                 <div class="card-body card-main-three">
                     <h5 class="m-4">Edit Temple </h5>
-                    <form class="form-floating" action="{{ route('home_about') }}" method="POST" enctype="multipart/form-data">
+                    <form class="form-floating" action="{{ route('home_about_update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method("PUT")
                         <div class="mb-4">
                             <span class="form-floating">
-                                <input type="text" class="form-control" id="TextInput" required placeholder="Name" name="heading" value="{{$history->heading}}">
+                                <input type="text" class="form-control" id="TextInput" required placeholder="Name" name="heading" value="{{$home_about->heading}}">
                                 <label class="" for="TextInput">Heading</label>
                             </span>
                         </div>
@@ -19,8 +19,8 @@
                         <div class="mb-4">
                             <span class="form-floating">
                                 <p>Image</p>
-                                <img src="{{$history->image}}" alt="image" style="height: 4em"><br><br>
-                                <input type="file" class="form-control" id="emailInput"  placeholder="password" name="image1" value="{{$history->image}}">
+                                <img src="{{$home_about->image_1}}" alt="image" style="height: 4em"><br><br>
+                                <input type="file" class="form-control" id="emailInput"  placeholder="password" name="image_1" value="{{$home_about->image_1}}">
                                 <small class="">Max file size: 300KB</small>
 
                             </span>
@@ -28,8 +28,8 @@
                         <div class="mb-4">
                             <span class="form-floating">
                                 <p>Image</p>
-                                <img src="{{$history->image}}" alt="image" style="height: 4em"><br><br>
-                                <input type="file" class="form-control" id="emailInput"  placeholder="password" name="image1" value="{{$history->image}}">
+                                <img src="{{$home_about->image_2}}" alt="image" style="height: 4em"><br><br>
+                                <input type="file" class="form-control" id="emailInput"  placeholder="password" name="image_2" value="{{$home_about->image_2}}">
                                 <small class="">Max file size: 300KB</small>
 
                             </span>
@@ -37,12 +37,12 @@
                        
                         <span class="">
                             <label class="form-label" for="TextInput">Description</label>
-                            <textarea class="form-control" id="TextArea" rows="8" cols="30" required placeholder="Comment" name="description1" value="">{{$history->description}}</textarea>
+                            <textarea class="form-control" id="TextArea" rows="8" cols="30" required placeholder="Comment" name="description_1" value="">{{$home_about->description_1}}</textarea>
                             <label class="" for="TextArea">Description</label><br>
                         </span>
                         <span class="">
                             <label class="form-label" for="TextInput">Description</label>
-                            <textarea class="form-control" id="TextArea" rows="8" cols="30" required placeholder="Comment" name="description2" value="">{{$history->description}}</textarea>
+                            <textarea class="form-control" id="TextArea" rows="8" cols="30" required placeholder="Comment" name="description_2" value="">{{$home_about->description_2}}</textarea>
                             <label class="" for="TextArea">Description</label><br>
                         </span>
                         

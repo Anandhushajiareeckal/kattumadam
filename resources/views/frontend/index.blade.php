@@ -64,28 +64,23 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<div class="section-title home-two" data-cue="zoomIn">
-					<h4>Exclusive Agency</h4>
-					<h1>A Welcoming Haven for All Kind of</h1>
-					<h1>Travelers and Nature Lovers</h1>
-					<p class="section-desc home-two">A wonderful serenity has taken possession of my entire soul, like these royella
-                    dolor amet, consectetur adipiscing elit dos eiusmod tempor incididunt resort
-                    sweet spring which I enjoy with my whole heart.</p>
+					{{-- <h4>About Kattumadam</h4> --}}
+					<h1>{{$home_about->heading}}</h1>
+					<p class="section-desc home-two">{{$home_about->description_1}}</p>
 				</div>
 				<div class="offer-thumb home-two" data-cue="zoomIn">
-					<img src="{{asset('frontend/assets/images/home2/offer1.png')}}" alt="">
+					<img src="{{$home_about->image_1}}" alt="">
 				</div>
 			</div>
 			<div class="col-lg-6">
 			   <div class="offer-thumb home-two upper" data-cue="zoomIn">
-					<img src="{{asset('frontend/assets/images/home2/offer2.png')}}" alt="">
+					<img src="{{$home_about->image_2}}" alt="">
 				</div>
 				<div class="section-title home-two" data-cue="zoomIn">
-					<p class="section-desc home-two">A wonderful serenity has taken possession of my entire soul, like these royella
-                    dolor amet, consectetur adipiscing elit dos eiusmod tempor incididunt resort
-                    sweet spring which I enjoy with my whole heart.</p>
+					<p class="section-desc home-two">{{$home_about->description_2}}</p>
 				</div>
 				<div class="luxury-button home-two" data-cue="zoomIn">
-					<a href="find-room.html">See More Tour</a>
+					<a href="/about">See More Tour</a>
 				</div>
 			</div>
 		</div>
